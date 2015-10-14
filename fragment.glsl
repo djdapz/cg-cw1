@@ -35,5 +35,22 @@ void main() {
 	float diff=0.4;
 	float spec=0.2;
 	float ambient=0.2;
-	outColour = vec4(spec+ambient, spec+diff+ambient, spec+ambient, 1.0);
+	float intensity = 1.0;
+	float lamb = 0.2;
+	float n = 3;
+	
+	vec4 light = normalize(lightVec);
+	vec4 norm = normalize(normOut);
+	//diffuse
+	float cosTheta = dot(norm, light);
+	float Idiff = intensity * diff * cosTheta;
+	
+	//specualar
+	float cosAlpha = dot((2*norm*cosTheta - light), eyeVec);
+	float Ispec = intensity * spec * pow(cosAlpha, 10);
+	
+	
+	 
+	//outColour = vec4(spec+ambient, spec+diff+ambient, spec+ambient, 1.0);
+	outColour = vec4(ambient, Idiff+ambient, ambient+Ispec, 0);
 }

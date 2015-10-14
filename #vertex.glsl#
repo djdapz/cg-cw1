@@ -28,7 +28,6 @@ out vec4 lightVec;
 out vec4 eyeVec;
 //Vector of transformed surface normal
 out vec4 normOut;
-//Vector of r,g,b,a for each pixel as float btw 0-1
 
 /* Standard operations work on vectors, e.g.
 	light + eye
@@ -44,19 +43,11 @@ out vec4 normOut;
 
 
 void main() {
-	vec4 v=vec4(position,1); 
-	vec4 norm = vec4(normal,0);
+	vec4 v=vec4(position,1.0);
 	/*calculate transformed vertex position*/
-	mat4 mvp = proj*view*model;
-	v=mvp*v;
 	/*calculate transformed normal vector from input vector normal (store in normOut)*/
-	
-	mat4 norm_mvp = proj*view*normTrans;
-	normOut = normalize(norm_mvp*norm);
+	/*calculate vector from transformed vertex to light source (store in lightVec)*/
 	/*calculate vector from transformed vertex to eye (store in eyeVec)*/
-	eyeVec = vec4(0,0,0,0) - v;
-	lightVec = lightPos - v;
 	/*output position of vertex on screen */
-	
 	gl_Position=v;
 }
