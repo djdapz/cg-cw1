@@ -30,6 +30,8 @@ out vec4 eyeVec;
 out vec4 normOut;
 //Vector of r,g,b,a for each pixel as float btw 0-1
 
+
+
 /* Standard operations work on vectors, e.g.
 	light + eye
 	light - eye
@@ -46,7 +48,8 @@ out vec4 normOut;
 void main() {
 	vec4 v=vec4(position,1); 
 	vec4 norm = vec4(normal,0);
-	
+
+
 	/*calculate transformed vertex position*/
 	mat4 mvp = proj*view*model;
 	v=mvp*v;

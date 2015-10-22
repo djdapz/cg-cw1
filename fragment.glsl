@@ -24,7 +24,8 @@ out vec4 outColour;
 	max(x,y) - maximum of x and y
 	dot(u,v) - dot product of u and v
 	normalize(x) - normalise a vector
-	pow(a,b) - raise a to power b
+	pow(a,b) - raise a to power bsing the texture provided in combination with the Phong shading in
+fragment.gls
 	texture(t,p) - read texture t at coordinates p (vec2 between 0 and 1)
 	mix(a,b,c) - linear interpolation between a and b, by c. (You do not need to use this to interpolate vertex attributes, OpenGL will take care of interpolation between vertices before calling the fragment shader)
    outColour is a vec4 containing the RGBA colour as floating point values between 0 and 1. outColour.r, outColour.g, outColour.b and outColour.a can be used to access the components of a vec4 (as well as .x .y .z .w)
@@ -58,7 +59,7 @@ void main() {
 	float Idiff = calcDiffuse(norm, light, intensity, diff);
 	float Ispec = calcSpec(norm, light, intensity, spec);
 	
-	 
 	//outColour = vec4(spec+ambient, spec+diff+ambient, spec+ambient, 1.0);
-	outColour = vec4(ambient+Ispec+Idiff, ambient+Ispec, ambient+Ispec, 0);
+	outColour = vec4(ambient+Ispec+Idiff, ambient+Ispec, ambient+Ispec, 0) ;
 }
+
